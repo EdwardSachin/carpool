@@ -3,6 +3,7 @@
 UniGo is a premium, glassmorphism-inspired carpooling platform exclusively designed for college students in Bangalore.
 It helps students reduce carbon footprint, split travel costs, and build a safer, verified campus commuting community.
 
+
 ✨ Key Features
 🛡️ Student-Only Access & Verification
 
@@ -10,6 +11,30 @@ Login and registration allowed only via college email ID
 (e.g. @newhorizonindia.edu)
 
 Prevents outsiders and ensures a trusted peer-to-peer environment
+
+
+🗺️ Live Map Integration
+
+Powered by TomTom Maps SDK
+
+Features:
+
+Real-time driver tracking
+
+Accurate route & distance calculation
+
+Pickup and drop visualization
+
+🌓 Dual Mode (Rider & Driver)
+
+Users can seamlessly switch between:
+
+🚶 Rider Mode
+
+🚗 Driver Mode
+
+Single account, no re-registration needed
+
 
 👩‍🦰 Women Safety & Security Features (Core Focus)
 🚨 SOS Emergency Button
@@ -36,27 +61,7 @@ Enhances comfort and safety for female students
 
 Clearly highlighted in ride listings
 
-🗺️ Live Map Integration
 
-Powered by TomTom Maps SDK
-
-Features:
-
-Real-time driver tracking
-
-Accurate route & distance calculation
-
-Pickup and drop visualization
-
-🌓 Dual Mode (Rider & Driver)
-
-Users can seamlessly switch between:
-
-🚶 Rider Mode
-
-🚗 Driver Mode
-
-Single account, no re-registration needed
 
 🚗 Driver Registration & Ride Details
 
@@ -76,6 +81,8 @@ Drivers can register with:
 
 Ensures transparency and trust before ride confirmation.
 
+
+
 💬 Automated In-App Chat
 
 Built-in chat between rider & driver
@@ -87,6 +94,8 @@ Auto-messages like:
 “Driver on the way”
 
 Reduces confusion and unnecessary calls
+
+
 
 💳 Subscription System
 
@@ -100,6 +109,8 @@ Features include:
 
 Priority ride visibility
 
+
+
 🎨 Premium UI Experience
 
 Modern dark mode
@@ -109,6 +120,8 @@ Glassmorphism design
 Smooth animations using React Native Animated API
 
 Clean, intuitive UX focused on students
+
+
 
 🛠️ Tech Stack
 
@@ -120,19 +133,24 @@ TypeScript
 
 Zustand (State Management)
 
+
 Backend
 
 Python (FastAPI)
 
 Uvicorn
 
+
 Database
 
 MongoDB (Async Motor Driver)
 
+
 Maps & Location
 
 TomTom Maps SDK
+
+
 
 🌍 Impact
 
@@ -143,6 +161,7 @@ Enhances student safety, especially for women
 Reduces traffic congestion around campuses
 
 Builds a verified, trusted college transport network
+
 
 ## 📂 Project Structure
 
