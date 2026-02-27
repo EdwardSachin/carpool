@@ -7,7 +7,9 @@ import {
   ScrollView,
   Switch,
   Dimensions,
+  Modal,
 } from 'react-native';
+import { BlurView } from 'expo-blur';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
 import useAppStore from '../store/appStore';
@@ -47,11 +49,11 @@ const SUBSCRIPTION_TIERS: SubscriptionTier[] = [
 ];
 
 const MOCK_DRIVERS = [
-  { id: '1', name: 'Rahul', latitude: 12.9352, longitude: 77.6245, isFemale: false, collegeId: '1', origin: 'Koramangala 4th Block', destination: 'NHCE' },
-  { id: '2', name: 'Priya', latitude: 12.9121, longitude: 77.6446, isFemale: true, collegeId: '1', origin: 'HSR 2nd Sector', destination: 'NHCE' },
-  { id: '3', name: 'Arjun', latitude: 12.9568, longitude: 77.7011, isFemale: false, collegeId: '1', origin: 'Marathahalli Bridge', destination: 'NHCE' },
-  { id: '4', name: 'Sneha', latitude: 12.9680, longitude: 77.6110, isFemale: true, collegeId: '1', origin: 'Indiranagar 100ft Rd', destination: 'NHCE' },
-  { id: '5', name: 'Vivek', latitude: 12.9711, longitude: 77.7497, isFemale: false, collegeId: '2', origin: 'Whitefield', destination: 'MVIT' },
+  { id: 'Rahul', name: 'Rahul', latitude: 12.9352, longitude: 77.6245, isFemale: false, collegeId: '1', origin: 'Koramangala 4th Block', destination: 'NHCE' },
+  { id: 'Priya', name: 'Priya', latitude: 12.9121, longitude: 77.6446, isFemale: true, collegeId: '1', origin: 'HSR 2nd Sector', destination: 'NHCE' },
+  { id: 'Arjun', name: 'Arjun', latitude: 12.9568, longitude: 77.7011, isFemale: false, collegeId: '1', origin: 'Marathahalli Bridge', destination: 'NHCE' },
+  { id: 'Sneha', name: 'Sneha', latitude: 12.9680, longitude: 77.6110, isFemale: true, collegeId: '1', origin: 'Indiranagar 100ft Rd', destination: 'NHCE' },
+  { id: 'Vivek', name: 'Vivek', latitude: 12.9711, longitude: 77.7497, isFemale: false, collegeId: '2', origin: 'Whitefield', destination: 'MVIT' },
 ];
 
 interface RiderDashboardProps {
@@ -66,6 +68,9 @@ export const RiderDashboard: React.FC<RiderDashboardProps> = ({ onSubscribe }) =
   const [activeRideId, setActiveRideId] = React.useState<string | null>(null);
   const [chatVisible, setChatVisible] = React.useState(false);
   const [driverName, setDriverName] = React.useState('');
+  const [confirmModalVisible, setConfirmModalVisible] = React.useState(false);
+  const [selectedDriver, setSelectedDriver] = React.useState<any>(null);
+  const [distanceInfo, setDistanceInfo] = React.useState({ meters: 0, text: '', eta: '' });
 
   React.useEffect(() => {
     (async () => {
@@ -133,9 +138,36 @@ export const RiderDashboard: React.FC<RiderDashboardProps> = ({ onSubscribe }) =
     return `${distanceKm.toFixed(1)} km`;
   };
 
-  const handleRequestRide = async (driver: any) => {
-    if (!location || !user?.college?.id) {
-      alert('Location or College data missing. Please ensure your profile is complete and location is enabled.');
+  const handleOpenConfirm = (driver: any) => {
+    if (!location) return;
+
+    // Calculate distance in meters
+    const R = 6371000; // Radius of the earth in meters
+    const dLat = (driver.latitude - location.coords.latitude) * (Math.PI / 180);
+    const dLon = (driver.longitude - location.coords.longitude) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(location.coords.latitude * (Math.PI / 180)) * Math.cos(driver.latitude * (Math.PI / 180)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distMeters = Math.round(R * c);
+
+    // Estimated time (assuming 20km/h avg in traffic)
+    const minutes = Math.round((distMeters / 333) + 2);
+    const etaTime = new Date(Date.now() + minutes * 60000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    setDistanceInfo({
+      meters: distMeters,
+      text: distMeters > 1000 ? `${(distMeters / 1000).toFixed(1)} km` : `${distMeters} m`,
+      eta: etaTime
+    });
+    setSelectedDriver(driver);
+    setConfirmModalVisible(true);
+  };
+
+  const handleRequestRide = async () => {
+    if (!selectedDriver || !location || !user?.college?.id) {
+      alert('Location or College data missing.');
       return;
     }
 
@@ -152,13 +184,15 @@ export const RiderDashboard: React.FC<RiderDashboardProps> = ({ onSubscribe }) =
           rider_lat: location.coords.latitude,
           rider_lng: location.coords.longitude,
           time: new Date().toLocaleTimeString(),
-          tokens: 50
+          tokens: 50,
+          target_driver_id: selectedDriver.id
         })
       });
       if (response.ok) {
+        setConfirmModalVisible(false);
         setActiveRideId(null);
         setChatVisible(false);
-        setRequestStatus(`Requested ${driver.name}! Waiting for acceptance...`);
+        setRequestStatus(`Requested ${selectedDriver.name}! Waiting for acceptance...`);
         setTimeout(() => setRequestStatus(null), 5000);
       }
     } catch (error) {
@@ -236,6 +270,7 @@ export const RiderDashboard: React.FC<RiderDashboardProps> = ({ onSubscribe }) =
             <MapPlaceholder
               drivers={filteredDrivers}
               userLocation={location ? { latitude: location.coords.latitude, longitude: location.coords.longitude } : undefined}
+              highlightedDriver={selectedDriver}
             />
           </GlassContainer>
 
@@ -263,7 +298,7 @@ export const RiderDashboard: React.FC<RiderDashboardProps> = ({ onSubscribe }) =
                   </View>
                   <TouchableOpacity
                     style={styles.requestButton}
-                    onPress={() => handleRequestRide(driver)}
+                    onPress={() => handleOpenConfirm(driver)}
                   >
                     <Text style={styles.requestButtonText}>Request</Text>
                   </TouchableOpacity>
@@ -293,6 +328,50 @@ export const RiderDashboard: React.FC<RiderDashboardProps> = ({ onSubscribe }) =
           />
         </>
       )}
+
+      {/* Confirmation Modal */}
+      <Modal visible={confirmModalVisible} transparent animationType="slide">
+        <BlurView intensity={30} style={StyleSheet.absoluteFill} tint="dark">
+          <View style={styles.modalCenteredView}>
+            <GlassContainer style={styles.rideConfirmModal}>
+              <View style={styles.modalHeader}>
+                <Ionicons name="car-sport" size={24} color={COLORS.emeraldGreen} />
+                <Text style={styles.modalTitle}>Confirm Ride</Text>
+                <TouchableOpacity onPress={() => setConfirmModalVisible(false)}>
+                  <Ionicons name="close" size={24} color={COLORS.whiteAlpha60} />
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.modalContent}>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Driver</Text>
+                  <Text style={styles.confirmValue}>{selectedDriver?.name}</Text>
+                </View>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Pickup</Text>
+                  <Text style={styles.confirmValue} numberOfLines={1}>Current Location</Text>
+                </View>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Dropoff</Text>
+                  <Text style={styles.confirmValue} numberOfLines={1}>{user?.college?.short || 'Campus'}</Text>
+                </View>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Distance</Text>
+                  <Text style={styles.confirmValue}>{distanceInfo.text}</Text>
+                </View>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Est. Arrival</Text>
+                  <Text style={styles.confirmValue}>{distanceInfo.eta}</Text>
+                </View>
+              </View>
+
+              <TouchableOpacity style={styles.confirmButton} onPress={handleRequestRide}>
+                <Text style={styles.confirmButtonText}>Confirm Request</Text>
+              </TouchableOpacity>
+            </GlassContainer>
+          </View>
+        </BlurView>
+      </Modal>
     </View>
   );
 };
@@ -520,6 +599,62 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.orange,
     borderWidth: 2,
     borderColor: COLORS.white,
+  },
+  modalCenteredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: SPACING.lg,
+  },
+  rideConfirmModal: {
+    width: '100%',
+    padding: SPACING.xl,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
+    marginBottom: SPACING.lg,
+  },
+  modalTitle: {
+    flex: 1,
+    fontSize: FONTS.sizes.xl,
+    fontWeight: 'bold',
+    color: COLORS.white,
+  },
+  modalContent: {
+    gap: SPACING.md,
+    marginBottom: SPACING.xl,
+  },
+  confirmRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.whiteAlpha40,
+    paddingBottom: SPACING.xs,
+  },
+  confirmLabel: {
+    color: COLORS.whiteAlpha60,
+    fontSize: FONTS.sizes.sm,
+  },
+  confirmValue: {
+    color: COLORS.white,
+    fontWeight: '600',
+    fontSize: FONTS.sizes.md,
+    flex: 1,
+    textAlign: 'right',
+    marginLeft: 10,
+  },
+  confirmButton: {
+    backgroundColor: COLORS.emeraldGreen,
+    padding: SPACING.md,
+    borderRadius: BORDER_RADIUS.md,
+    alignItems: 'center',
+  },
+  confirmButtonText: {
+    color: COLORS.white,
+    fontWeight: 'bold',
+    fontSize: FONTS.sizes.md,
   },
 });
 

@@ -83,6 +83,7 @@ class RideRequest(BaseModel):
     status: str = "pending"  # pending, accepted, completed
     driver_id: Optional[str] = None
     driver_name: Optional[str] = None
+    target_driver_id: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
 class RideRequestCreate(BaseModel):
@@ -96,6 +97,7 @@ class RideRequestCreate(BaseModel):
     time: str
     riders_count: int = 1
     tokens: int
+    target_driver_id: Optional[str] = None
 
 class ChatMessage(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -251,8 +253,13 @@ async def create_ride_request(request_input: RideRequestCreate):
     return request_obj
 
 @api_router.get("/ride-requests", response_model=List[RideRequest])
-async def get_ride_requests(status: Optional[str] = None, college_id: Optional[str] = None, rider_id: Optional[str] = None):
-    """Get all ride requests, optionally filtered by status, college_id, and rider_id"""
+async def get_ride_requests(
+    status: Optional[str] = None, 
+    college_id: Optional[str] = None, 
+    rider_id: Optional[str] = None,
+    target_driver_id: Optional[str] = None
+):
+    """Get all ride requests, optionally filtered by status, college_id, rider_id, and target_driver_id"""
     query = {}
     if status:
         query["status"] = status
@@ -260,6 +267,8 @@ async def get_ride_requests(status: Optional[str] = None, college_id: Optional[s
         query["college_id"] = college_id
     if rider_id:
         query["rider_id"] = rider_id
+    if target_driver_id:
+        query["target_driver_id"] = target_driver_id
     
     requests = await db.ride_requests.find(query).to_list(1000)
     return [RideRequest(**req) for req in requests]

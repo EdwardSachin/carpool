@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
+  Modal,
 } from 'react-native';
+import { BlurView } from 'expo-blur';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import GlassContainer from '../components/GlassContainer';
 import { COLORS, SPACING, BORDER_RADIUS, FONTS } from '../constants/theme';
@@ -26,11 +28,12 @@ export const DriverDashboard: React.FC = () => {
   const [chatVisible, setChatVisible] = useState(false);
   const [activeRideId, setActiveRideId] = useState<string | null>(null);
   const [otherPartyName, setOtherPartyName] = useState('');
+  const [publishModalVisible, setPublishModalVisible] = useState(false);
 
   const fetchRequests = async () => {
-    if (!user?.college?.id) return;
+    if (!user?.id) return;
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/ride-requests?college_id=${user.college.id}`);
+      const response = await fetch(`http://127.0.0.1:8000/api/ride-requests?target_driver_id=${user.id}`);
       if (response.ok) {
         const data = await response.json();
         setRideRequests(data.filter((r: any) => r.status === 'pending'));
@@ -64,6 +67,39 @@ export const DriverDashboard: React.FC = () => {
       }
     } catch (error) {
       console.error('Accept failed:', error);
+    }
+  };
+
+  const handlePublishRoute = () => {
+    if (!origin || !departureTime) {
+      alert('Please fill in route details');
+      return;
+    }
+    setPublishModalVisible(true);
+  };
+
+  const confirmPublishRoute = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/driver-routes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          driver_id: user?.id,
+          driver_name: user?.name,
+          origin,
+          destination,
+          departure_time: departureTime,
+          available_seats: 4
+        })
+      });
+      if (response.ok) {
+        setPublishModalVisible(false);
+        setOrigin('');
+        setDepartureTime('');
+        alert('Route published successfully!');
+      }
+    } catch (error) {
+      console.error('Publish failed:', error);
     }
   };
 
@@ -150,7 +186,11 @@ export const DriverDashboard: React.FC = () => {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.publishButton} activeOpacity={0.8}>
+          <TouchableOpacity
+            style={styles.publishButton}
+            activeOpacity={0.8}
+            onPress={handlePublishRoute}
+          >
             <MaterialCommunityIcons name="publish" size={20} color={COLORS.white} />
             <Text style={styles.publishButtonText}>Publish Route</Text>
           </TouchableOpacity>
@@ -217,6 +257,46 @@ export const DriverDashboard: React.FC = () => {
           otherPartyName={otherPartyName}
         />
       )}
+
+      {/* Confirmation Modal */}
+      <Modal visible={publishModalVisible} transparent animationType="slide">
+        <BlurView intensity={30} style={StyleSheet.absoluteFill} tint="dark">
+          <View style={styles.modalCenteredView}>
+            <GlassContainer style={styles.publishConfirmModal}>
+              <View style={styles.modalHeader}>
+                <Ionicons name="paper-plane" size={24} color={COLORS.emeraldGreen} />
+                <Text style={styles.modalTitle}>Confirm Route</Text>
+                <TouchableOpacity onPress={() => setPublishModalVisible(false)}>
+                  <Ionicons name="close" size={24} color={COLORS.whiteAlpha60} />
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.modalContent}>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Driver</Text>
+                  <Text style={styles.confirmValue}>{user?.name}</Text>
+                </View>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Origin</Text>
+                  <Text style={styles.confirmValue}>{origin}</Text>
+                </View>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Destination</Text>
+                  <Text style={styles.confirmValue}>{destination}</Text>
+                </View>
+                <View style={styles.confirmRow}>
+                  <Text style={styles.confirmLabel}>Departure</Text>
+                  <Text style={styles.confirmValue}>{departureTime}</Text>
+                </View>
+              </View>
+
+              <TouchableOpacity style={styles.confirmButton} onPress={confirmPublishRoute}>
+                <Text style={styles.confirmButtonText}>Confirm & Publish</Text>
+              </TouchableOpacity>
+            </GlassContainer>
+          </View>
+        </BlurView>
+      </Modal>
 
       {/* Elite Host Amenities */}
       <View style={styles.section}>
@@ -519,6 +599,59 @@ const styles = StyleSheet.create({
     color: COLORS.whiteAlpha80,
     marginTop: SPACING.xs,
     textAlign: 'center',
+  },
+  modalCenteredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: SPACING.lg,
+  },
+  publishConfirmModal: {
+    width: '100%',
+    padding: SPACING.xl,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
+    marginBottom: SPACING.lg,
+  },
+  modalTitle: {
+    flex: 1,
+    fontSize: FONTS.sizes.xl,
+    fontWeight: 'bold',
+    color: COLORS.white,
+  },
+  modalContent: {
+    gap: SPACING.md,
+    marginBottom: SPACING.xl,
+  },
+  confirmRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.whiteAlpha40,
+    paddingBottom: SPACING.xs,
+  },
+  confirmLabel: {
+    color: COLORS.whiteAlpha60,
+    fontSize: FONTS.sizes.sm,
+  },
+  confirmValue: {
+    color: COLORS.white,
+    fontWeight: '600',
+    fontSize: FONTS.sizes.md,
+  },
+  confirmButton: {
+    backgroundColor: COLORS.emeraldGreen,
+    padding: SPACING.md,
+    borderRadius: BORDER_RADIUS.md,
+    alignItems: 'center',
+  },
+  confirmButtonText: {
+    color: COLORS.white,
+    fontWeight: 'bold',
+    fontSize: FONTS.sizes.md,
   },
 });
 

@@ -31,7 +31,7 @@ interface AppState {
   setMode: (mode: UserMode) => void;
   setCollege: (college: College) => void;
   loadPersistedData: () => Promise<void>;
-  onboardDriver: (collegeEmail: string, vehicleDetails?: string) => Promise<boolean>;
+  onboardDriver: (vehicleDetails?: string) => Promise<boolean>;
 }
 
 const safeSetItem = async (key: string, value: string) => {
@@ -101,7 +101,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
   },
 
-  onboardDriver: async (collegeEmail, vehicleDetails) => {
+  onboardDriver: async (vehicleDetails) => {
     const user = get().user;
     if (!user) return false;
 
@@ -113,16 +113,15 @@ export const useAppStore = create<AppState>((set, get) => ({
           name: user.name,
           email: user.email,
           college: user.college,
-          collegeEmail,
+          collegeEmail: user.email,
           vehicleDetails
         }),
       });
 
       if (response.ok) {
-        const updatedUser = {
+        const updatedUser: User = {
           ...user,
           isDriver: true,
-          collegeEmail,
           driverVerificationStatus: 'approved' as const
         };
         set({ user: updatedUser });

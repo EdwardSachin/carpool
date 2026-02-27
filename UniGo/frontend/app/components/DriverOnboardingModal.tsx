@@ -28,26 +28,20 @@ const DriverOnboardingModal: React.FC<DriverOnboardingModalProps> = ({
     onComplete,
 }) => {
     const { user, onboardDriver } = useAppStore();
-    const [email, setEmail] = useState('');
     const [vehicle, setVehicle] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     const handleOnboard = async () => {
-        if (!email || !vehicle) {
-            setError('Please fill in all fields');
-            return;
-        }
-
-        if (!email.includes('@')) {
-            setError('Please enter a valid college email');
+        if (!vehicle) {
+            setError('Please provide vehicle details');
             return;
         }
 
         setLoading(true);
         setError('');
 
-        const success = await onboardDriver(email, vehicle);
+        const success = await onboardDriver(vehicle);
         setLoading(false);
 
         if (success) {
@@ -83,19 +77,16 @@ const DriverOnboardingModal: React.FC<DriverOnboardingModalProps> = ({
                         {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
                         <View style={styles.inputGroup}>
-                            <Text style={styles.label}>College Email</Text>
-                            <View style={styles.inputContainer}>
-                                <Ionicons name="mail" size={20} color={COLORS.emeraldGreen} />
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="name@college.edu"
-                                    placeholderTextColor={COLORS.whiteAlpha40}
-                                    value={email}
-                                    onChangeText={setEmail}
-                                    autoCapitalize="none"
-                                    keyboardType="email-address"
-                                />
+                            <Text style={styles.label}>Verified College Identity</Text>
+                            <View style={[styles.inputContainer, { borderColor: COLORS.cardBorder, backgroundColor: COLORS.glassDark }]}>
+                                <Ionicons name="mail" size={20} color={COLORS.whiteAlpha40} />
+                                <Text style={[styles.input, { color: COLORS.whiteAlpha60 }]}>
+                                    {user?.email}
+                                </Text>
                             </View>
+                            <Text style={{ fontSize: 10, color: COLORS.emeraldGreen, marginTop: 4 }}>
+                                <Ionicons name="shield-checkmark" size={10} /> Identity locked to rider profile
+                            </Text>
                         </View>
 
                         <View style={styles.inputGroup}>

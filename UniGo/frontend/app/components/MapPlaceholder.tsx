@@ -24,6 +24,7 @@ interface UserLocation {
 interface MapPlaceholderProps {
   drivers?: Driver[];
   userLocation?: UserLocation;
+  highlightedDriver?: Driver | null;
   center?: { lat: number; lng: number };
   zoom?: number;
 }
@@ -31,6 +32,7 @@ interface MapPlaceholderProps {
 const generateMapHTML = (
   drivers: Driver[],
   userLocation: UserLocation | undefined,
+  highlightedDriver: Driver | null | undefined,
   center: { lat: number; lng: number },
   zoom: number
 ): string => {
@@ -66,6 +68,7 @@ const generateMapHTML = (
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css" />
   <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
+  <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; background: #0f172a; }
@@ -147,8 +150,49 @@ const generateMapHTML = (
         document.getElementById('loadingOverlay').classList.add('hidden');
         ${markersJS}
         ${userMarkerJS}
+
+        ${userLocation && highlightedDriver ? `
+        try {
+          tt.services.calculateRoute({
+            key: '${TOMTOM_API_KEY}',
+            locations: [
+              [${userLocation.longitude}, ${userLocation.latitude}],
+              [${highlightedDriver.longitude}, ${highlightedDriver.latitude}]
+            ]
+          }).then(function(response) {
+            var geojson = response.toGeoJson();
+            if (map.getLayer('route')) {
+              map.removeLayer('route');
+              map.removeSource('route');
+            }
+            map.addLayer({
+              'id': 'route',
+              'type': 'line',
+              'source': {
+                'type': 'geojson',
+                'data': geojson
+              },
+              'paint': {
+                'line-color': '#0A84FF',
+                'line-width': 6,
+                'line-opacity': 0.8
+              }
+            });
+            
+            var bounds = new tt.LngLatBounds();
+            geojson.features[0].geometry.coordinates.forEach(function(point) {
+              bounds.extend(point);
+            });
+            map.fitBounds(bounds, { padding: 50, linear: true });
+          }).catch(function(err) {
+            console.error('Routing failed:', err);
+          });
+        } catch(routeErr) {
+          console.error('Route calculation error:', routeErr);
+        }
+        ` : ''}
       });
-    } catch(e) { console.error(e); }
+    } catch(e) { console.error('Map init failed:', e); }
   </script>
 </body>
 </html>`;
@@ -157,6 +201,7 @@ const generateMapHTML = (
 const MapPlaceholder: React.FC<MapPlaceholderProps> = ({
   drivers = [],
   userLocation,
+  highlightedDriver,
   center: propCenter,
   zoom = DEFAULT_ZOOM,
 }) => {
@@ -169,8 +214,8 @@ const MapPlaceholder: React.FC<MapPlaceholderProps> = ({
   }, [propCenter, userLocation]);
 
   const mapHTML = React.useMemo(() =>
-    generateMapHTML(drivers, userLocation, mapCenter, zoom),
-    [drivers, userLocation, mapCenter, zoom]
+    generateMapHTML(drivers, userLocation, highlightedDriver, mapCenter, zoom),
+    [drivers, userLocation, highlightedDriver, mapCenter, zoom]
   );
 
   if (Platform.OS === 'web') {
