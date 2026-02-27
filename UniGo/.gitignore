@@ -85,3 +85,15 @@ android-sdk/ -e
 # Environment files
 *.env
 *.env.*
+
+
+# Expo / Metro cache
+.expo/
+.metro-cache/
+
+# Node
+node_modules/
+
+# Env files
+.env
+.env.*
