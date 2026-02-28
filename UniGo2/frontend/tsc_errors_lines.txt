@@ -1,0 +1,581 @@
+﻿
+app/_components/CampusMap.tsx(60,13): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(61,15): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(78,11): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(79,13): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(162,13): 
+error TS2322: Type 'ViewStyle | TextStyle 
+| ImageStyle' is not assignable to type 
+'false | "" | Value | 
+AnimatedInterpolation<string | number> | 
+RegisteredStyle<ViewStyle> | 
+WithAnimatedObject<ViewStyle> | 
+WithAnimatedArray<...> | readonly (false | 
+... 6 more ... | undefined)[] | null | 
+undefined'.
+app/_components/CampusMap.tsx(170,13): 
+error TS2322: Type 'ViewStyle | TextStyle 
+| ImageStyle' is not assignable to type 
+'false | "" | Value | 
+AnimatedInterpolation<string | number> | 
+RegisteredStyle<ViewStyle> | 
+WithAnimatedObject<ViewStyle> | 
+WithAnimatedArray<...> | readonly (false | 
+... 6 more ... | undefined)[] | null | 
+undefined'.
+app/_components/CampusMap.tsx(178,13): 
+error TS2322: Type 'ViewStyle | TextStyle 
+| ImageStyle' is not assignable to type 
+'false | "" | Value | 
+AnimatedInterpolation<string | number> | 
+RegisteredStyle<ViewStyle> | 
+WithAnimatedObject<ViewStyle> | 
+WithAnimatedArray<...> | readonly (false | 
+... 6 more ... | undefined)[] | null | 
+undefined'.
+app/_components/CampusMap.tsx(186,15): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(188,17): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(192,15): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(193,17): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(194,27): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(195,19): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(197,17): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(200,17): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(204,19): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(206,17): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(208,19): 
+error TS2769: No overload matches this 
+call.
+app/_components/CampusMap.tsx(256,5): 
+error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_components/CampusMap.tsx(285,5): 
+error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_components/DriverDashboard.tsx(274,18)
+: error TS2345: Argument of type 
+'DriverRoute' is not assignable to 
+parameter of type 'PublishedRoute'.
+app/_components/OnboardingModal.tsx(95,15):
+ error TS2345: Argument of type '{ id: 
+string; name: string; email: string; 
+college: { id: string; name: string; 
+short: string; department: string; }; 
+ecoScore: number; verified: true; }' is 
+not assignable to parameter of type 'User'.
+app/_components/OnboardingModal.tsx(116,11)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(118,25)
+: error TS2339: Property 'meshStart' does 
+not exist on type '{ background: string; 
+backgroundRider: string; backgroundDriver: 
+string; pinkModeOverlay: string; 
+pinkModeFrost: string; cardSurface: 
+string; cardBorder: string; cardStroke: 
+string; glassWhiteBorder: string; ... 33 
+more ...; pink: string; }'.
+app/_components/OnboardingModal.tsx(118,43)
+: error TS2339: Property 'meshEnd' does 
+not exist on type '{ background: string; 
+backgroundRider: string; backgroundDriver: 
+string; pinkModeOverlay: string; 
+pinkModeFrost: string; cardSurface: 
+string; cardBorder: string; cardStroke: 
+string; glassWhiteBorder: string; ... 33 
+more ...; pink: string; }'.
+app/_components/OnboardingModal.tsx(126,11)
+: error TS2322: Type 'ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'false | "" | Value | 
+AnimatedInterpolation<string | number> | 
+RegisteredStyle<ViewStyle> | 
+WithAnimatedObject<ViewStyle> | 
+WithAnimatedArray<...> | readonly (false | 
+... 6 more ... | undefined)[] | null | 
+undefined'.
+app/_components/OnboardingModal.tsx(134,17)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(135,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(136,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(139,19)
+: error TS2322: Type 'ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'false | "" | Value | 
+AnimatedInterpolation<string | number> | 
+RegisteredStyle<ViewStyle> | 
+WithAnimatedObject<ViewStyle> | 
+WithAnimatedArray<...> | readonly (false | 
+... 6 more ... | undefined)[] | null | 
+undefined'.
+app/_components/OnboardingModal.tsx(147,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(148,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(153,15)
+: error TS2322: Type 'ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'StyleProp<ViewStyle>'.
+app/_components/OnboardingModal.tsx(157,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(164,23)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(165,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(167,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(168,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(171,17)
+: error TS2322: Type 'ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'StyleProp<ViewStyle>'.
+app/_components/OnboardingModal.tsx(175,23)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(184,23)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(189,25)
+: error TS2322: Type 'ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle> | 
+RecursiveArray<ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle>> | readonly 
+(ViewStyle | ... 1 more ... | 
+RegisteredStyle<...>)[]'.
+app/_components/OnboardingModal.tsx(190,25)
+: error TS2322: Type 'false | ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle> | 
+RecursiveArray<ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle>> | readonly 
+(ViewStyle | ... 1 more ... | 
+RegisteredStyle<...>)[]'.
+app/_components/OnboardingModal.tsx(198,24)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(215,17)
+: error TS2322: Type 'ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'StyleProp<ViewStyle>'.
+app/_components/OnboardingModal.tsx(219,23)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(226,17)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(227,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(230,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(231,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(233,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(235,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(238,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(241,17)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(256,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(258,23)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(262,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(264,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(270,23)
+: error TS2322: Type 'ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle> | 
+RecursiveArray<ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle>> | readonly 
+(ViewStyle | ... 1 more ... | 
+RegisteredStyle<...>)[]'.
+app/_components/OnboardingModal.tsx(270,45)
+: error TS2322: Type 'false | ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle> | 
+RecursiveArray<ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle>> | readonly 
+(ViewStyle | ... 1 more ... | 
+RegisteredStyle<...>)[]'.
+app/_components/OnboardingModal.tsx(275,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(278,31)
+: error TS2322: Type 'ViewStyle | 
+TextStyle | ImageStyle' is not assignable 
+to type 'StyleProp<ViewStyle>'.
+app/_components/OnboardingModal.tsx(279,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(285,17)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(300,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(305,17)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(306,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(309,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(311,21)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(313,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(314,19)
+: error TS2769: No overload matches this 
+call.
+app/_components/OnboardingModal.tsx(358,5):
+ error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_components/OnboardingModal.tsx(379,5):
+ error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_components/OnboardingModal.tsx(436,5):
+ error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_components/OnboardingModal.tsx(450,5):
+ error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_components/OnboardingModal.tsx(519,5):
+ error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_components/OnboardingModal.tsx(560,5):
+ error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_components/OnboardingModal.tsx(565,5):
+ error TS2322: Type 'string' is not 
+assignable to type '100 | "400" | "500" | 
+"600" | "700" | "800" | "normal" | "bold" 
+| "100" | "200" | "300" | "900" | 200 | 
+300 | 400 | 500 | 600 | 700 | 800 | 900 | 
+"ultralight" | "thin" | "light" | "medium" 
+| ... 6 more ... | undefined'.
+app/_store/appStore.ts(68,15): error 
+TS2300: Duplicate identifier 'Vehicle'.
+app/_store/appStore.ts(68,24): error 
+TS2300: Duplicate identifier 'EcoStats'.
+app/_store/appStore.ts(68,34): error 
+TS2300: Duplicate identifier 
+'CampusReward'.
+app/_store/appStore.ts(68,48): error 
+TS2300: Duplicate identifier 
+'RideBroadcast'.
+app/_store/appStore.ts(142,49): error 
+TS2300: Duplicate identifier 'Vehicle'.
+app/_store/appStore.ts(142,58): error 
+TS2300: Duplicate identifier 'EcoStats'.
+app/_store/appStore.ts(142,68): error 
+TS2300: Duplicate identifier 
+'CampusReward'.
+app/_store/appStore.ts(142,82): error 
+TS2300: Duplicate identifier 
+'RideBroadcast'.
+app/_store/appStore.ts(314,13): error 
+TS2322: Type '{ drivingLicenseUploaded: 
+boolean; drivingLicenseImage: string | 
+undefined; isDriver: boolean; 
+driverVerificationStatus: string | 
+undefined; id: string; name: string; 
+email: string; ... 6 more ...; 
+campusPoints: number; }' is not assignable 
+to type 'User'.
+app/index.tsx(97,28): error TS2322: Type 
+'ViewStyle | TextStyle | ImageStyle' is 
+not assignable to type 'false | "" | Value 
+| AnimatedInterpolation<string | number> | 
+RegisteredStyle<ViewStyle> | 
+WithAnimatedObject<ViewStyle> | 
+WithAnimatedArray<...> | readonly (false | 
+... 6 more ... | undefined)[] | null | 
+undefined'.
+app/index.tsx(98,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(102,15): error TS2769: No 
+overload matches this call.
+app/index.tsx(103,17): error TS2769: No 
+overload matches this call.
+app/index.tsx(104,19): error TS2769: No 
+overload matches this call.
+app/index.tsx(108,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(110,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(116,17): error TS2769: No 
+overload matches this call.
+app/index.tsx(118,15): error TS2322: Type 
+'ViewStyle | TextStyle | ImageStyle' is 
+not assignable to type 
+'StyleProp<ViewStyle>'.
+app/index.tsx(128,15): error TS2322: Type 
+'ViewStyle | TextStyle | ImageStyle' is 
+not assignable to type 
+'StyleProp<ViewStyle>'.
+app/index.tsx(132,62): error TS2769: No 
+overload matches this call.
+app/index.tsx(134,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(138,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(146,15): error TS2769: No 
+overload matches this call.
+app/index.tsx(147,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(150,17): error TS2322: Type 
+'ViewStyle | TextStyle | ImageStyle' is 
+not assignable to type 'false | "" | Value 
+| AnimatedInterpolation<string | number> | 
+RegisteredStyle<ViewStyle> | 
+WithAnimatedObject<ViewStyle> | 
+WithAnimatedArray<...> | readonly (false | 
+... 6 more ... | undefined)[] | null | 
+undefined'.
+app/index.tsx(159,15): error TS2322: Type 
+'ViewStyle | TextStyle | ImageStyle' is 
+not assignable to type 
+'StyleProp<ViewStyle>'.
+app/index.tsx(168,16): error TS2769: No 
+overload matches this call.
+app/index.tsx(173,15): error TS2322: Type 
+'ViewStyle | TextStyle | ImageStyle' is 
+not assignable to type 
+'StyleProp<ViewStyle>'.
+app/index.tsx(182,16): error TS2769: No 
+overload matches this call.
+app/index.tsx(190,15): error TS2769: No 
+overload matches this call.
+app/index.tsx(200,19): error TS2322: Type 
+'ViewStyle | TextStyle | ImageStyle' is 
+not assignable to type 'ViewStyle | Falsy 
+| RegisteredStyle<ViewStyle> | 
+RecursiveArray<ViewStyle | Falsy | 
+RegisteredStyle<ViewStyle>> | readonly 
+(ViewStyle | ... 1 more ... | 
+RegisteredStyle<...>)[]'.
+app/index.tsx(206,13): error TS2769: No 
+overload matches this call.
+app/index.tsx(239,17): error TS2769: No 
+overload matches this call.
+app/index.tsx(240,19): error TS2769: No 
+overload matches this call.
+app/index.tsx(242,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(243,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(245,66): error TS2769: No 
+overload matches this call.
+app/index.tsx(250,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(251,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(255,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(257,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(258,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(261,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(265,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(266,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(269,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(272,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(276,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(277,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(280,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(283,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(287,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(288,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(291,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(294,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(298,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(299,25): error TS2769: No 
+overload matches this call.
+app/index.tsx(304,21): error TS2769: No 
+overload matches this call.
+app/index.tsx(306,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(313,17): error TS2322: Type 
+'ViewStyle | TextStyle | ImageStyle' is 
+not assignable to type 
+'StyleProp<ViewStyle>'.
+app/index.tsx(316,23): error TS2769: No 
+overload matches this call.
+app/index.tsx(357,5): error TS2322: Type 
+'string' is not assignable to type '100 | 
+"400" | "500" | "600" | "700" | "800" | 
+"normal" | "bold" | "100" | "200" | "300" 
+| "900" | 200 | 300 | 400 | 500 | 600 | 
+700 | 800 | 900 | "ultralight" | "thin" | 
+"light" | "medium" | ... 6 more ... | 
+undefined'.
+app/index.tsx(364,5): error TS2322: Type 
+'string' is not assignable to type '100 | 
+"400" | "500" | "600" | "700" | "800" | 
+"normal" | "bold" | "100" | "200" | "300" 
+| "900" | 200 | 300 | 400 | 500 | 600 | 
+700 | 800 | 900 | "ultralight" | "thin" | 
+"light" | "medium" | ... 6 more ... | 
+undefined'.
+app/index.tsx(451,5): error TS2322: Type 
+'string' is not assignable to type '100 | 
+"400" | "500" | "600" | "700" | "800" | 
+"normal" | "bold" | "100" | "200" | "300" 
+| "900" | 200 | 300 | 400 | 500 | 600 | 
+700 | 800 | 900 | "ultralight" | "thin" | 
+"light" | "medium" | ... 6 more ... | 
+undefined'.
+app/index.tsx(461,5): error TS2322: Type 
+'string' is not assignable to type '100 | 
+"400" | "500" | "600" | "700" | "800" | 
+"normal" | "bold" | "100" | "200" | "300" 
+| "900" | 200 | 300 | 400 | 500 | 600 | 
+700 | 800 | 900 | "ultralight" | "thin" | 
+"light" | "medium" | ... 6 more ... | 
+undefined'.
+app/index.tsx(489,5): error TS2322: Type 
+'string' is not assignable to type '100 | 
+"400" | "500" | "600" | "700" | "800" | 
+"normal" | "bold" | "100" | "200" | "300" 
+| "900" | 200 | 300 | 400 | 500 | 600 | 
+700 | 800 | 900 | "ultralight" | "thin" | 
+"light" | "medium" | ... 6 more ... | 
+undefined'.
+app/index.tsx(521,5): error TS2322: Type 
+'string' is not assignable to type '100 | 
+"400" | "500" | "600" | "700" | "800" | 
+"normal" | "bold" | "100" | "200" | "300" 
+| "900" | 200 | 300 | 400 | 500 | 600 | 
+700 | 800 | 900 | "ultralight" | "thin" | 
+"light" | "medium" | ... 6 more ... | 
+undefined'.
+app/index.tsx(555,5): error TS2322: Type 
+'string' is not assignable to type '100 | 
+"400" | "500" | "600" | "700" | "800" | 
+"normal" | "bold" | "100" | "200" | "300" 
+| "900" | 200 | 300 | 400 | 500 | 600 | 
+700 | 800 | 900 | "ultralight" | "thin" | 
+"light" | "medium" | ... 6 more ... | 
+undefined'.
+
+
